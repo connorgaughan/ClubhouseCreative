@@ -27,7 +27,7 @@ add_action('init', 'portfolio_register');
                         'capability_type'       => 'post',
                         'hierarchical'          => false,
                         'menu_position'         => null,
-                        'supports' 				=> array('title','editor','thumbnail', 'excerpt'),
+                        'supports' 				=> array('title','editor','thumbnail', 'excerpt', 'author'),
                 );
                 register_post_type( 'portfolio' , $args );
         }  
@@ -41,6 +41,18 @@ function project_taxonomy() {
                 array(
                         "hierarchical"          => true, 
                         "label"                 => 'Project Type',
+                        'public'                => true,
+                        'query_var'             => true,
+                        'show_ui'               => true,
+                        'rewrite'               => true
+                )
+        );
+        register_taxonomy(
+                'featured',
+                'portfolio',
+                array(
+                        "hierarchical"          => true, 
+                        "label"                 => 'Feature Type',
                         'public'                => true,
                         'query_var'             => true,
                         'show_ui'               => true,

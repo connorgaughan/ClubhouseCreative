@@ -10,19 +10,20 @@ $round-to-nearest-half-line			: false;
 
 //-------------------------------------------------------------------------------------------------  Base Typography
 body{ font-family: "myriad-pro-1","myriad-pro-2",sans-serif; @include adjust-font-size-to($base-font-size, 4); color:$primary; }
-a{ text-decoration:none; }
+a{ text-decoration:none; color:$highlight; }
 
 //-------------------------------------------------------------------------------------------------  Headlines
-h1 { 
+h1, .featured-hero h2 { 
 	@extend .is-uppercase;
-	@include adjust-font-size-to(32px);
-	font-weight:300;
-	margin: 0 0 rhythm(4, 32px) 0;
+	@include adjust-font-size-to(18px);
+	font-weight:700;
+	margin: 0;
 } 
 
 h2 { 
-	@include adjust-font-size-to(36px, 7);
-	margin: 0 0 rhythm(3, 22px) 0;
+	@include adjust-font-size-to(18px);
+	margin: rhythm(3, 18px) 0 rhythm(2, 18px) 0;
+	font-weight:700;
 } 
 
 h3 { 

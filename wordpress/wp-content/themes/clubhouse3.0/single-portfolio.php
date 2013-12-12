@@ -11,13 +11,12 @@
 					$url = get_post_meta($post->ID, 'dbt_url', true);
 					$secondary_headline = get_post_meta($post->ID, 'dbt_secondary_headline', true);
 					$client_name = get_post_meta($post->ID, 'dbt_client_name', true);
-					$project_lead = get_post_meta($post->ID, 'dbt_project_lead', true);
 					$designers = get_post_meta($post->ID, 'dbt_designers', true);
 					$photographers = get_post_meta($post->ID, 'dbt_photographers', true);
 					
-					if ($project_lead) {
-						echo "<li>Project Lead: $project_lead</li>";
-					}
+					echo "<li>Project Lead:";
+					the_author_posts_link();
+					echo "</li>";
 					
 					if ($designers) {
 						echo "<li>Designers: $designers</li>";
@@ -39,8 +38,24 @@
 			</ul>
 		</aside>
 	</section>
-	<?php the_content(); ?>
-	<h2><?php the_title(); ?></h2>
+	<section class="project-images">
+		<div class="container">
+			<?php the_content(); ?>
+		</div>
+		</
+	<footer class="project-footer">
+		<div class="container">
+			<div class="prev">
+				<?php previous_post('&laquo; &laquo; %', '', 'yes'); ?>
+			</div>
+			<div class="all-work">
+				<i class="work"><a href="<?php print bloginfo('url'); ?>/our-work">View All Work</a></i>
+			</div>	
+			<div class="next">
+				<?php next_post('% &raquo; &raquo; ', '', 'yes'); ?>
+			</div>
+		</div>
+	</footer>
 	
 <?php endwhile; ?>
 

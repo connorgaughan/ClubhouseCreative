@@ -10,21 +10,9 @@ $meta_box = array(
     'priority' => 'high',
     'fields' => array(
     array(
-    	'name' => 'Secondary Headline',
-    	'std' =>  '',
-    	'id' => $prefix . 'secondary_headline',
-    	'type' => 'text'
-    ),
-    array(
     	'name' => 'Client Name',
     	'std' =>  '',
     	'id' => $prefix . 'client_name',
-    	'type' => 'text'
-    ),
-    array(
-    	'name' => 'Project Lead',
-    	'std' =>  '',
-    	'id' => $prefix . 'project_lead',
     	'type' => 'text'
     ),
     array(
@@ -44,6 +32,38 @@ $meta_box = array(
     	'std' =>  '',
     	'id' => $prefix . 'url',
     	'type' => 'text'
+    ),
+    array(  
+        'name'=> 'Logo Color',  
+        'desc'  => 'Select an appropriate color for the menu and Logo color.', 
+        'id'    => $prefix . 'logo',  
+        'type'  => 'select',  
+        'options' => array (  
+            'one' => array (  
+                'label' => 'Black',  
+                'value' => 'black'  
+            ),  
+            'two' => array (  
+                'label' => 'White',  
+                'value' => 'white'  
+            ) 
+        )  
+    ),
+    array(  
+        'name'=> 'Left or Right',  
+        'desc'  => 'For the recent work, which side will the image appear on the main page slider.', 
+        'id'    => $prefix . 'float',  
+        'type'  => 'select',  
+        'options' => array (  
+            'one' => array (  
+                'label' => 'Left',  
+                'value' => 'left'  
+            ),  
+            'two' => array (  
+                'label' => 'Right',  
+                'value' => 'right'  
+            ) 
+        )  
     ))
 );
 
@@ -71,10 +91,16 @@ add_action('admin_menu', 'mytheme_add_box');
 	    	echo '<tr>',
 	    		'<td><label for="', $field['id'], '">', $field['name'], '</label>', '<br />';    
 	    	switch ($field['type']) {
-		    	case 'text':
-		    echo '<input type="text" name="', $field['id'], '" id="', $field['id'], '" value="', $meta ? $meta : $field['std'], '" size="30" style="width:97%" />', '<br />', $field['desc'];
-    
-		break;
+		    case 'text':
+		    	echo '<input type="text" name="', $field['id'], '" id="', $field['id'], '" value="', $meta ? $meta : $field['std'], '" size="30" style="width:97%" />', '<br />', $field['desc'];
+			break;
+			case 'select':
+				echo '<select name="'.$field['id'].'" id="'.$field['id'].'">';
+					foreach ($field['options'] as $option) {
+						echo '<option', $meta == $option['value'] ? ' selected="selected"' : '', ' value="'.$option['value'].'">'.$option['label'].'</option>';
+					}
+				echo '</select><br /><span class="description">'.$field['desc'].'</span>';
+			break;
     
 		}
     
