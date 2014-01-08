@@ -1,6 +1,6 @@
 <?php Starkers_Utilities::get_template_parts( array( 'parts/shared/html-header', 'parts/shared/header' ) ); ?>
 <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
-	<section class="container">
+	<section class="container intro-wrap">
 		<div class="intro">
 			<?php the_excerpt(); ?>
 		</div>
@@ -14,7 +14,7 @@
 					$designers = get_post_meta($post->ID, 'dbt_designers', true);
 					$photographers = get_post_meta($post->ID, 'dbt_photographers', true);
 					
-					echo "<li>Project Lead:";
+					echo "<li>Project Lead: ";
 					the_author_posts_link();
 					echo "</li>";
 					
@@ -38,11 +38,9 @@
 			</ul>
 		</aside>
 	</section>
-	<section class="project-images">
-		<div class="container">
-			<?php the_content(); ?>
-		</div>
-		</
+	<section class="project-images container">
+		<?php the_content(); ?>
+	</section>
 	<footer class="project-footer">
 		<div class="container">
 			<div class="prev">

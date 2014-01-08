@@ -44,6 +44,12 @@
 	// Theme specific settings
 	add_theme_support('post-thumbnails');
 	
+	// Page Excerpts
+	add_action( 'init', 'my_add_excerpts_to_pages' );
+	function my_add_excerpts_to_pages() {
+	     add_post_type_support( 'page', 'excerpt' );
+	}
+	
 	
 	// Register Nav Menu
 	register_nav_menus(array('primary' => 'Primary Navigation'));
@@ -57,6 +63,7 @@
 	// Custom Post Types
 	require_once( 'custom-functions/meta_secondary-headline.php' );
 	require_once( 'custom-functions/post-type_projects.php' );
+	require_once( 'custom-functions/picturefill.php' );
 	
 	
 	// Multiple Post Thumbnails
@@ -69,21 +76,21 @@
 		);
 		new MultiPostThumbnails(
 			array(
-				'label' => 'Thumbnail Image',
+				'label' => 'Our Work Thumbnail',
 				'id' => 'thumbnail-image',
 				'post_type' => 'portfolio'
 			)
 		);
 		new MultiPostThumbnails(
 			array(
-				'label' => 'Featured Work Image',
+				'label' => 'Featured on Our Work Page Image',
 				'id' => 'featured-work-image',
 				'post_type' => 'portfolio'
 			)
 		);
 		new MultiPostThumbnails(
 			array(
-				'label' => 'Recent Work Image',
+				'label' => 'Home Page Rotation Image',
 				'id' => 'recent-work-image',
 				'post_type' => 'portfolio'
 			)
@@ -93,13 +100,10 @@
 	
 	// Scripts
 	function starkers_script_enqueuer() {
-		wp_register_script( 'site', get_template_directory_uri().'/js/site.js', array( 'jquery' ) );
+		wp_register_script( 'site', get_template_directory_uri().'/_assets_production/js/site.min.js', array( 'jquery' ) );
 		wp_enqueue_script( 'site' );
-		
-		wp_register_script( 'picturefill', get_template_directory_uri().'/js/picturefill.js', array( 'jquery' ) );
-		wp_enqueue_script( 'picturefill' );
 
-		wp_register_style( 'screen', get_stylesheet_directory_uri().'/css/style.css', '', '', 'screen' );
+		wp_register_style( 'screen', get_stylesheet_directory_uri().'/_assets_production/css/style.css', '', '', 'screen' );
         wp_enqueue_style( 'screen' );
 	}	
 

@@ -33,37 +33,12 @@ $meta_box = array(
     	'id' => $prefix . 'url',
     	'type' => 'text'
     ),
-    array(  
-        'name'=> 'Logo Color',  
-        'desc'  => 'Select an appropriate color for the menu and Logo color.', 
-        'id'    => $prefix . 'logo',  
-        'type'  => 'select',  
-        'options' => array (  
-            'one' => array (  
-                'label' => 'Black',  
-                'value' => 'black'  
-            ),  
-            'two' => array (  
-                'label' => 'White',  
-                'value' => 'white'  
-            ) 
-        )  
-    ),
-    array(  
-        'name'=> 'Left or Right',  
-        'desc'  => 'For the recent work, which side will the image appear on the main page slider.', 
-        'id'    => $prefix . 'float',  
-        'type'  => 'select',  
-        'options' => array (  
-            'one' => array (  
-                'label' => 'Left',  
-                'value' => 'left'  
-            ),  
-            'two' => array (  
-                'label' => 'Right',  
-                'value' => 'right'  
-            ) 
-        )  
+    array(
+        'name' => 'Image Side',
+        'desc' => 'Do you want the image on the left or right?',
+        'id' => $prefix . 'float',
+        'type' => 'select',
+        'options' => array( 'left' => 'Left', 'right' => 'Right' )
     ))
 );
 

@@ -2,16 +2,8 @@
 <header>
 	<div class="fixed">
 		<div class="container">
-			<?php 
-				$logowhite = get_post_meta($post->ID, 'dbt_logo', 'white'); 
-			?>
-
 			<a class="logo" href="<?php echo home_url(); ?>"><?php bloginfo( 'name' ); ?></a>
-			<?php if($logowhite) {
-				echo "<i class='fa fa-bars menu-click white'></i>";
-			} else {
-				echo "<i class='fa fa-bars menu-click'></i>";			
-			}?>
+			<i class='fa fa-bars menu-click'></i>		
 		</div>
 	</div>
 </header>
