@@ -180,6 +180,7 @@ button.small{ padding:.5em .875em; background:transparent; color:$highlight; bor
 	.team-title{
 		@extend .is-uppercase;
 		@include adjust-font-size-to(12px);
+		font-weight:600;
 		color: $highlight;
 	}
 	.team-location{
