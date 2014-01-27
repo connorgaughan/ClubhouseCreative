@@ -24,6 +24,16 @@ module.exports = function(grunt) {
         }
       }
     },
+    grunticon: {
+    	myIcons: {
+    		files: [{
+    			expand: true,
+    			cwd: '_assets_dev/icons',
+    			src: ['*.svg', '*.png'],
+    			dest: "_assets_production/icons"
+    		}],
+		}
+    },
     watch: {
       scripts: {
           files: ['_assets_dev/js/*.js'],
@@ -40,14 +50,16 @@ module.exports = function(grunt) {
         	livereload: true,
             spawn: false,
         },
-      }
+      },
     },
   });
 
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-grunticon');
 
   grunt.registerTask('default', ['concat', 'compass']);
+  grunt.registerTask('icon', 'grunticon');
 
 };

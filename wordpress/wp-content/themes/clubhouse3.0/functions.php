@@ -28,11 +28,11 @@
 
 	// Thumbnails
 	add_theme_support('post-thumbnails');
-	add_image_size( 'full@2', 1600, 9999 );
-	add_image_size( 'large@2', 1400, 9999 );
-	add_image_size( 'medium@2', 1000, 9999 );
-	add_image_size( 'small@2', 800, 9999 );
-	add_image_size( 'thumb@2', 600, 9999 );
+	add_image_size( 'full2', 1600, 9999 );
+	add_image_size( 'large2', 1400, 9999 );
+	add_image_size( 'medium2', 1000, 9999 );
+	add_image_size( 'small2', 800, 9999 );
+	add_image_size( 'thumb2', 600, 9999 );
 	
 	add_image_size( 'full', 1200, 9999 );
 	add_image_size( 'large', 1000, 9999 );
@@ -50,7 +50,6 @@
 	     add_post_type_support( 'page', 'excerpt' );
 	}
 	
-	
 	// Register Nav Menu
 	register_nav_menus(array('primary' => 'Primary Navigation'));
 
@@ -62,8 +61,10 @@
 
 	// Custom Post Types
 	require_once( 'custom-functions/meta_secondary-headline.php' );
-	require_once( 'custom-functions/post-type_projects.php' );
+	require_once( 'custom-functions/meta_team-info.php' );
+	require_once( 'custom-functions/post-types.php' );
 	require_once( 'custom-functions/picturefill.php' );
+	// require_once( 'custom-functions/admin.php' );
 	
 	
 	// Multiple Post Thumbnails
@@ -83,18 +84,19 @@
 		);
 		new MultiPostThumbnails(
 			array(
-				'label' => 'Featured on Our Work Page Image',
-				'id' => 'featured-work-image',
-				'post_type' => 'portfolio'
-			)
-		);
-		new MultiPostThumbnails(
-			array(
 				'label' => 'Home Page Rotation Image',
 				'id' => 'recent-work-image',
 				'post_type' => 'portfolio'
 			)
 		);
+	}
+	
+	// Rewrite Author Slug for Teams    
+	add_action('init', 'change_wp_author_base');
+	function change_wp_author_base() {
+		global $wp_rewrite;
+		$author_slug = 'team'; // change author slug name
+		$wp_rewrite->author_base = $author_slug;
 	}
 	
 	

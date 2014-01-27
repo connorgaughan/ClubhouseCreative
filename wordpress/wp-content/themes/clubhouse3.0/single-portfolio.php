@@ -1,42 +1,41 @@
 <?php Starkers_Utilities::get_template_parts( array( 'parts/shared/html-header', 'parts/shared/header' ) ); ?>
 <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 	<section class="container intro-wrap">
-		<div class="intro">
-			<?php the_excerpt(); ?>
-		</div>
 		<aside class="project-details">
-			<h2>Project Details</h2>
+			<span class="project-category"><?php $terms = the_terms($post->ID, 'project_type'); echo $term->name; ?></span>
+			<h2><?php the_title(); ?></h2>
 			<ul>
+				<li>&mdash;</li>
 				<?php 
 					$url = get_post_meta($post->ID, 'dbt_url', true);
-					$secondary_headline = get_post_meta($post->ID, 'dbt_secondary_headline', true);
 					$client_name = get_post_meta($post->ID, 'dbt_client_name', true);
 					$designers = get_post_meta($post->ID, 'dbt_designers', true);
 					$photographers = get_post_meta($post->ID, 'dbt_photographers', true);
 					
-					echo "<li>Project Lead: ";
+					echo "<li><b>Project Lead:</b> ";
 					the_author_posts_link();
 					echo "</li>";
 					
 					if ($designers) {
-						echo "<li>Designers: $designers</li>";
+						echo "<li><b>Designers:</b> $designers</li>";
 					}
 					
 					if ($photographers) {
-						echo "<li>Photographers: $photographers</li>";
+						echo "<li><b>Photographers:</b> $photographers</li>";
 					}
 	    	
 					if ($url) { 
-						echo "<li>Client: <a href='$url' target='_blank'>$client_name</a></li>"; 
+						echo "<li><b>Client:</b> <a href='$url' target='_blank'>$client_name</a></li>"; 
 					} else {
-						echo "<li>Client: $client_name</li>";
+						echo "<li><b>Client:</b> $client_name</li>";
 					}
 				?>
-				<li>Year: <?php the_date('Y'); ?></li>
-				<li>&mdash;</li>
-				<li><?php $terms = the_terms($post->ID, 'project_type'); echo $term->name; ?></li>
+				<li><b>Year:</b> <?php the_date('Y'); ?></li>
 			</ul>
 		</aside>
+		<div class="intro">
+			<?php the_excerpt(); ?>
+		</div>
 	</section>
 	<section class="project-images container">
 		<?php the_content(); ?>
@@ -44,13 +43,13 @@
 	<footer class="project-footer">
 		<div class="container">
 			<div class="prev">
-				<?php previous_post('&laquo; &laquo; %', '', 'yes'); ?>
+				<?php previous_post('%', '<i class="icon-prev"></i>', 'false'); ?>
 			</div>
 			<div class="all-work">
-				<i class="work"><a href="<?php print bloginfo('url'); ?>/our-work">View All Work</a></i>
+				<a href="<?php print bloginfo('url'); ?>/our-work"><i class="icon-view-all-work"></i></a>
 			</div>	
 			<div class="next">
-				<?php next_post('% &raquo; &raquo; ', '', 'yes'); ?>
+				<?php next_post('%', '<i class="icon-next"></i>', 'false'); ?>
 			</div>
 		</div>
 	</footer>

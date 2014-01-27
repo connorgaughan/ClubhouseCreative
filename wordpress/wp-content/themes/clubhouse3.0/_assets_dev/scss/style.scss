@@ -9,6 +9,7 @@
 @import "libs/typography"; 	
 @import "libs/forms";	
 @import "libs/flexslider";
+@import "libs/icons";
 
 
 //---------------------------------------------------------------------------------------------------------------------------  General Styles
@@ -17,7 +18,7 @@ body {width: 100%; @extend .clearfix;}
 img{ max-width:100%; height:auto; }
 button.view{ @extend .is-inline; padding:.75em 1.25em; text-align:center; color:$white; background:$highlight; border:none; @include border-radius(8px); @include leader(5); @include adjust-font-size-to(12px); }
 button.small{ padding:.5em .875em; background:transparent; color:$highlight; border:1px solid $highlight; }
-.lead{ @extend .is-centered; p{ @include adjust-font-size-to(20px, 5); @include padding-trailer(2); @include padding-leader(2); @include column(12); color:$tertiary; font-weight:300; } }
+.lead{ @include column(12); p{ @include adjust-font-size-to(20px, 5); @include padding-trailer(2); @include padding-leader(2); color:$tertiary; font-weight:300; } }
 .padded{ @include padding-leader(5); @include padding-trailer(7); }
 .tinted{ background:lighten($tertiary, 35%); }
 
@@ -33,7 +34,7 @@ button.small{ padding:.5em .875em; background:transparent; color:$highlight; bor
 .main-menu{
 	display:none;
 	position:fixed;
-	z-index:7000;
+	z-index:9999;
 	height:100%;
 	width:100%;
 	background:$primary;
@@ -59,28 +60,39 @@ button.small{ padding:.5em .875em; background:transparent; color:$highlight; bor
 	position:fixed;
 	top:0;
 	width:100%;
+	z-index:8888	;
 	@include padding-leader(2);
 	@include padding-trailer(2);
+	@include transition-property(all);
+	@include transition-duration(.5s);
+	@include transition-timing-function(ease-in-out);
 }
 
-.logo{
+.fixed.white{
+	background:$highlight-opacity;
+	@include transition-property(all);
+	@include transition-duration(.5s);
+	@include transition-timing-function(ease-in-out);
+}
+
+.icon-logo{
 	@extend .is-inline;
-	width: 35px;
-	height: 35px;
+	width: 50px;
+	height: 50px;
 	margin:-.25em 0 0 0;
-	background-image: url("data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%0D%0A%3C%21--%20Generator%3A%20Adobe%20Illustrator%2015.1.0%2C%20SVG%20Export%20Plug-In%20.%20SVG%20Version%3A%206.00%20Build%200%29%20%20--%3E%0D%0A%3C%21DOCTYPE%20svg%20PUBLIC%20%22-//W3C//DTD%20SVG%201.1//EN%22%20%22http%3A//www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd%22%3E%0D%0A%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20x%3D%220px%22%20y%3D%220px%22%0D%0A%09%20width%3D%22102.4px%22%20height%3D%22113.6px%22%20viewBox%3D%220%200%20102.4%20113.6%22%20enable-background%3D%22new%200%200%20102.4%20113.6%22%20xml%3Aspace%3D%22preserve%22%3E%0D%0A%3Cg%3E%0D%0A%09%3Cg%3E%0D%0A%09%09%3Cg%3E%0D%0A%09%09%09%3Cpath%20fill%3D%22%23282828%22%20d%3D%22M43.4%2C66.5v9.3H30.3c-3.1%2C0-4.9-0.1-6.4-1.5c-1.4-1.4-1.4-3.2-1.4-6V46.9c0-3.1-0.1-5.4%2C1.6-6.9%0D%0A%09%09%09%09c1.5-1.4%2C3.7-1.4%2C5.7-1.4h13.6v9.3H40v-6.2h-9.3c-2.4%2C0-3.1%2C0-3.7%2C0.7c-0.8%2C0.7-0.8%2C1.8-0.8%2C3.9v21.3c0.1%2C2.5%2C0.1%2C3.6%2C0.7%2C4.3%0D%0A%09%09%09%09c0.6%2C0.7%2C1.6%2C0.7%2C3.8%2C0.7H40v-6.2H43.4z%22/%3E%0D%0A%09%09%3C/g%3E%0D%0A%09%09%3Cg%3E%0D%0A%09%09%09%3Cpath%20fill%3D%22%23282828%22%20d%3D%22M52.8%2C75.7v-3.1h3.4V41.7h-3.4v-3.1h10.8v3.1h-3.5v13.6h13.7V41.7h-3.5v-3.1h10.8v3.1h-3.5v30.9h3.5v3.1%0D%0A%09%09%09%09H70.3v-3.1h3.5V58.5H60.1v14.2h3.5v3.1H52.8z%22/%3E%0D%0A%09%09%3C/g%3E%0D%0A%09%3C/g%3E%0D%0A%09%3Cpath%20fill%3D%22%23282828%22%20d%3D%22M51.8%2C15.5c23%2C0%2C41.7%2C18.7%2C41.7%2C41.7S74.8%2C98.8%2C51.8%2C98.8c-23%2C0-41.7-18.7-41.7-41.7S28.8%2C15.5%2C51.8%2C15.5%0D%0A%09%09%20M51.8%2C11.5C26.6%2C11.5%2C6.1%2C32%2C6.1%2C57.2s20.5%2C45.7%2C45.7%2C45.7c25.2%2C0%2C45.7-20.5%2C45.7-45.7S77%2C11.5%2C51.8%2C11.5L51.8%2C11.5z%22/%3E%0D%0A%3C/g%3E%0D%0A%3C/svg%3E%0D%0A");
 	background-repeat: no-repeat;
 	background-size: cover;
 	text-indent: -99999px;
 }
 
-.menu-click{
+.icon-menu{
 	float:right;
 	z-index:8000;
-	@include padding-leader(2);
+	display:block;
+	height:17px;
+	width:22px;
+	@include leader(2);
 }
-
-.menu-click.white{ color:$white; }
 
 
 //---------------------------------------------------------------------------------------------------------------------------  Hero
@@ -118,10 +130,82 @@ button.small{ padding:.5em .875em; background:transparent; color:$highlight; bor
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------  About
+//---------------------------------------------------------------------------------------------------------------------------  About Us
+.about-us .lead.large {
+	@include adjust-font-size-to(24px);
+	p{ color:$primary; }
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------------  Team
+.team-member{
+	@include column(12);
+	position:relative;
+	overflow:hidden;
+	@include trailer(5);
+	&:hover{
+		.top{ 
+			@include opacity(.15); 
+			@include transition-property(opacity);
+			@include transition-duration(.5s);
+			@include transition-timing-function(ease-in-out);
+		}
+		.bottom{ 
+			top:15%; 
+			@include transition-property(top);
+			@include transition-duration(.5s);
+			@include transition-timing-function(ease-in-out);
+		}
+	}
+	.top img{
+		display:block;
+		margin:0 auto;
+	}
+	.bottom{
+		@extend .is-centered;
+		position:absolute;
+		top:-100%;
+		left:1%;
+		right:1%;
+		width:98%;
+	}
+	.icons{
+		@extend .clearfix;
+		margin:0 auto;
+		li{
+			@extend .is-inline;
+			list-style-type:none;
+		}
+	}
+	.team-title{
+		@extend .is-uppercase;
+		@include adjust-font-size-to(12px);
+		color: $highlight;
+	}
+	.team-location{
+		@include adjust-font-size-to(12px);
+		margin: rhythm(1, 12px) 0 rhythm(3, 12px) 0;
+	}
+}
+
+
+
+.icon-twitter, .icon-dribbble, .icon-instagram, .icon-mail, .icon-linkedin{
+	@extend .is-inline;
+	float:left;
+	width: 30px;
+	height: 30px;
+	margin:0 5px;
+	text-indent:-9999px;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
 
 
 //---------------------------------------------------------------------------------------------------------------------------  Single Portfolio
+.single-portfolio{
+	background:#fafafa;
+}
 .intro-wrap{
 	@include padding-leader(5);
 	@include padding-trailer(5);
@@ -133,19 +217,90 @@ button.small{ padding:.5em .875em; background:transparent; color:$highlight; bor
 	color:$tertiary;
 }
 
+.project-category{
+	@extend .is-uppercase;
+	@include adjust-font-size-to(12px);
+}
 
 .project-details{
 	@include padding-trailer(5);
-	ul{ list-style-type:none; }
+	ul{ 
+		list-style-type:none; 
+		li{
+			@include adjust-font-size-to(14px);
+			color:$secondary;
+			b{ color:$primary; }
+		}
+	}
 } 
+
+.single .project-image{
+	@extend .clearfix;
+	margin:0 auto 1em auto;
+}
+
+.project-footer{
+	width:100%;
+	display:inline-block;
+	border-top:1px solid lighten($tertiary, 25%);
+	border-bottom:1px solid lighten($tertiary, 25%);
+}
+
+.prev, .next, .all-work{
+	@include padding-leader(4);
+	@include padding-trailer(4);
+}
+
+.all-work{
+	border-left:1px solid lighten($tertiary, 25%);
+	border-right:1px solid lighten($tertiary, 25%);
+}
 
 .next, .all-work, .prev{
 	@extend .is-centered;
 	@include column(4);
 }
 
-.single .project-image{
-	@include trailer(1);
+.icon-prev, .icon-view-all-work, .icon-next{
+	display:block;
+	margin:0 auto;
+	height:50px;
+	width:50px;
+}
+
+
+//---------------------------------------------------------------------------------------------------------------------------  Footer
+footer{
+	color:$secondary;
+	.footer-top{
+		@include padding-leader(10);
+		@include padding-trailer(10);
+		@include adjust-font-size-to(14px);
+		.footer-module{
+			@include column(12);
+			@include trailer(4);
+		}
+	}	
+	.footer-bottom{
+		@include adjust-font-size-to(14px);
+		@include padding-leader(4);
+		@include padding-trailer(4);
+		border-top:1px solid lighten($tertiary, 25%);
+	}
+	.full-disclosure {
+		display:none;
+		p{ 
+			@include adjust-font-size-to(24px, 6);
+		}
+	}
+	.icon-love{
+		display:inline-block;
+		vertical-align:middle;
+		height:10px;
+		width:12px;
+		background-size:cover;
+		margin-top:-2px;
+	}
 }
 
 
@@ -186,7 +341,8 @@ button.small{ padding:.5em .875em; background:transparent; color:$highlight; bor
 			@include trailer(4);
 		}
 	}
-	
+	footer .footer-top .footer-module{ @include column(6); @include trailer(5); }
+	.team-member{ @include column(6); }
 }
 
 
@@ -226,13 +382,15 @@ button.small{ padding:.5em .875em; background:transparent; color:$highlight; bor
 	.main-menu ul li{ @include adjust-font-size-to(120px); }
 	
 	.intro{
-		@include column(6);
-		@include push(2);
+		@include column(7);
+		@include push(1);
+		float:right;
 		@include adjust-font-size-to(32px, 7);
 	}
 	.project-details{
-		@include column(2);
-		@include pull(2);
+		@include column(3);
+		@include pull(1);
+		float:right;
 	}
 	.home .hero{
 		padding-top:20em;
@@ -254,12 +412,21 @@ button.small{ padding:.5em .875em; background:transparent; color:$highlight; bor
 		@include padding-leader(15);
 		@include padding-trailer(17);
 	}
-	.lead p{
-		@include adjust-font-size-to(32px, 7);
+	.lead {
 		@include column(8);
 		@include push(2);
 		@include pull(2);
+		p{
+			@include adjust-font-size-to(32px, 7);
+		}
 	}
+	.team-member{ @include column(3); }
+}
+
+//----------------------------------------------------------------------------------------------------------  70em
+@media screen and (min-width: 70em){
+	footer .footer-top .footer-module{ @include column(2); &:first-child{ @include push(2); } }
+	footer .footer-bottom p{ @include push(2); }
 }
 
 

@@ -32,13 +32,6 @@ $meta_box = array(
     	'std' =>  '',
     	'id' => $prefix . 'url',
     	'type' => 'text'
-    ),
-    array(
-        'name' => 'Image Side',
-        'desc' => 'Do you want the image on the left or right?',
-        'id' => $prefix . 'float',
-        'type' => 'select',
-        'options' => array( 'left' => 'Left', 'right' => 'Right' )
     ))
 );
 
